@@ -2,118 +2,212 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dibyajyoti Behera - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dibyajyoti Behera | Portfolio</title>
+  <link rel="icon" href="https://fav.farm/🔥" type="image/x-icon">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     :root {
-      --bg-color: #0f172a;
-      --text-color: #f8fafc;
-      --accent: #38bdf8;
+      --bg-color: #f3f4f6;
+      --text-color: #1f2937;
+      --accent-color: #4f46e5;
+      --button-hover: #3730a3;
     }
-
-    body.light-theme {
-      --bg-color: #ffffff;
-      --text-color: #0f172a;
-      --accent: #0ea5e9;
+    [data-theme="dark"] {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --accent-color: #6366f1;
+      --button-hover: #4338ca;
     }
-
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
       color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    nav {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-      transition: background 0.3s ease, color 0.3s ease;
-      text-align: center;
+      padding: 1rem 2rem;
+      background: var(--accent-color);
+      color: #fff;
+      
     }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+    nav h1 {
+      margin: 0;
     }
-
-    p {
+    #theme-toggle {
       font-size: 1.2rem;
-      margin-top: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #fff;
     }
-
-    .links a {
-      color: var(--accent);
-      text-decoration: none;
-      margin: 0 10px;
+    .intro {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, var(--accent-color), var(--button-hover));
+      color: white;
+    }
+    section {
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      border-bottom: 3px solid var(--accent-color);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .skills-grid div {
+      padding: 0.75rem;
+      background: var(--accent-color);
+      color: #fff;
+      border-radius: 12px;
       font-weight: bold;
     }
-
-    .links a:hover {
+    .socials a {
+      margin-right: 1rem;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .socials a:hover {
       text-decoration: underline;
     }
-
-    #theme-toggle {
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--accent-color);
+      color: #fff;
+      font-weight: 500;
+    }
+    #scrollTopBtn {
       position: fixed;
-      top: 20px;
+      bottom: 20px;
       right: 20px;
-      padding: 6px 14px;
-      border: none;
-      background-color: var(--accent);
+      background: var(--accent-color);
       color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
-      border-radius: 6px;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
     }
-
-    .badge {
-      margin-top: 2rem;
-    }
-
-    footer {
-      margin-top: 3rem;
-      font-size: 0.95rem;
-      color: var(--text-color);
-      opacity: 0.7;
-    }
-
-    img.shield {
-      max-width: 100%;
-      height: auto;
+    #scrollTopBtn:hover {
+      background-color: var(--button-hover);
+      transform: translateY(-2px);
     }
   </style>
-</head>
-<body>
-
-  <button id="theme-toggle">Light Mode</button>
-
-  <h1>👋 Hi, I’m Dibyajyoti Behera</h1>
-  <p>A passionate Web Developer & BCA student 🚀</p>
-
-  <div class="links">
-    <a href="https://github.com/dibyajyoti" target="_blank">GitHub</a>
-    <a href="https://linkedin.com/in/dibyajyoti" target="_blank">LinkedIn</a>
-    <a href="mailto:your.email@example.com">Email</a>
-  </div>
-
-  <div class="badge">
-    <a href="https://github.com/dibyajyoti" target="_blank">
-      <img class="shield" src="https://img.shields.io/badge/Built%20with%20%E2%9D%A4%EF%B8%8F%20by%20Dibyajyoti%20Behera-using%20HTML%2FCSS%2FJS-blueviolet?style=for-the-badge&logo=html5&logoColor=white" alt="Built with ❤️ by Dibyajyoti Behera using HTML/CSS/JS">
-    </a>
-  </div>
-
-  <footer>
-    Made with ❤️ by Dibyajyoti Behera
-  </footer>
-
   <script>
-    const toggle = document.getElementById("theme-toggle");
-    toggle.addEventListener("click", () => {
-      document.body.classList.toggle("light-theme");
-      toggle.textContent = document.body.classList.contains("light-theme")
-        ? "Dark Mode"
-        : "Light Mode";
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.getElementById("theme-toggle");
+      const currentTheme = localStorage.getItem("theme") || "light";
+      document.documentElement.setAttribute("data-theme", currentTheme);
+      toggle.textContent = currentTheme === "dark" ? "☀️" : "🌙";
+
+      toggle.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        toggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
+      });
+
+      const scrollTopBtn = document.getElementById("scrollTopBtn");
+      window.addEventListener("scroll", () => {
+        scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+      });
+      scrollTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     });
   </script>
+</head>
+<body>
+  <header class="hero">
+    <nav>
+  <h1>Dibyajyoti Behera</h1>
+  <div>
+    <a href="#home" style="margin-right: 1rem; color: #fff; text-decoration: none; font-weight: bold;">Home</a>
+    <a href="#about" style="margin-right: 1rem; color: #fff; text-decoration: none; font-weight: bold;">About</a>
+    <a href="#skills" style="margin-right: 1rem; color: #fff; text-decoration: none; font-weight: bold;">Skills</a>
+    <a href="#uiux" style="margin-right: 1rem; color: #fff; text-decoration: none; font-weight: bold;">UI/UX</a>
+    <a href="#contact" style="margin-right: 1rem; color: #fff; text-decoration: none; font-weight: bold;">Contact</a>
+    <button id="theme-toggle">🌙</button>
+  </div>
+</nav>
+    <div class="intro" id="home">
+      <h2>Hi, I'm Dibyajyoti 👋</h2>
+      <p>Aspiring Web Developer </p>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a BCA student passionate about web development and programming. I love creating responsive web interfaces, solving DSA problems, and continuously learning.
+    </p>
+    <ul>
+      <li>🎓 BCA Student</li>
+      <li>💻 Passionate about Web Technologies & Problem Solving</li>
+      <li>🚀 Learning Full Stack Development</li>
+    </ul>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div>HTML</div>
+      <div>CSS</div>
+      <div>JavaScript</div>
+      <div>C</div>
+      <div>C++</div>
+      <div>Python</div>
+      <div>Git</div>
+      <div>GitHub</div>
+    </div>
+  </section>
+
+  <section id="uiux">
+    <h2>UI/UX Design</h2>
+    <p>
+      I’m also enthusiastic about crafting intuitive and aesthetic user experiences. I enjoy exploring the intersection of design and usability.
+    </p>
+    <ul>
+      <li>🎨 Wireframing & Prototyping</li>
+      <li>📱 Responsive & Mobile-first Design</li>
+      <li>🧠 User-centered thinking</li>
+      <li>🔧 Tools: Figma, Canva</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="socials">
+      <a href="https://github.com/dibyajyoti-codes" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/dibyajyoti-behera-503854283" target="_blank">LinkedIn</a>
+      <a href="behera.dibyajyoti668@gmail.com">Email</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built with ❤️ by Dibyajyoti Behera using HTML/CSS/JS</p>
+  </footer>
+  <button id="scrollTopBtn" title="Go to top">Top ↑</button>
 </body>
 </html>
