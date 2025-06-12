@@ -32,6 +32,7 @@
       background: var(--accent-color);
       color: white;
       padding: 1rem 1.5rem;
+      position: relative;
     }
     .nav-header {
       display: flex;
@@ -51,6 +52,7 @@
       display: flex;
       gap: 1rem;
       margin-top: 0.75rem;
+      align-items: center;
     }
     .nav-links a, .nav-links button {
       color: #fff;
@@ -62,6 +64,13 @@
     }
     .nav-links button {
       font-size: 1rem;
+    }
+    #theme-toggle {
+      margin-left: auto;
+      margin-right: 0;
+      position: absolute;
+      right: 1.5rem;
+      top: 1.2rem;
     }
     .intro {
       text-align: center;
@@ -143,6 +152,11 @@
       .nav-links.show {
         display: flex;
       }
+      #theme-toggle {
+        position: static;
+        margin-left: auto;
+        margin-top: 0.5rem;
+      }
     }
   </style>
   <script>
@@ -150,9 +164,9 @@
       const toggle = document.getElementById("theme-toggle");
       const currentTheme = localStorage.getItem("theme") || "light";
       document.documentElement.setAttribute("data-theme", currentTheme);
-      toggle.textContent = currentTheme === "dark" ? "☀️" : "🌙";
+      if (toggle) toggle.textContent = currentTheme === "dark" ? "☀️" : "🌙";
 
-      toggle.addEventListener("click", () => {
+      if (toggle) toggle.addEventListener("click", () => {
         const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
         document.documentElement.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
@@ -167,9 +181,13 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
-      document.getElementById("hamburger").addEventListener("click", function() {
-        document.getElementById("nav-links").classList.toggle("show");
-      });
+      const hamburger = document.getElementById("hamburger");
+      if (hamburger) {
+        hamburger.addEventListener("click", function () {
+          const navLinks = document.getElementById("nav-links");
+          if (navLinks) navLinks.classList.toggle("show");
+        });
+      }
     });
   </script>
 </head>
@@ -186,8 +204,8 @@
         <a href="#skills">Skills</a>
         <a href="#uiux">UI/UX</a>
         <a href="#contact">Contact</a>
-        <button id="theme-toggle">🌙</button>
       </div>
+      <button id="theme-toggle">🌙</button>
     </nav>
     <div class="intro" id="home">
       <h2>Hi, I'm Dibyajyoti 👋</h2>
