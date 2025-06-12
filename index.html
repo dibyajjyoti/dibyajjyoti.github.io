@@ -3,39 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dibyajyoti Behera - Web Developer</title>
+  <title>Dibyajyoti Behera - Portfolio</title>
   <style>
+    :root {
+      --bg-color: #0f172a;
+      --text-color: #f8fafc;
+      --accent: #38bdf8;
+    }
+
+    body.light-theme {
+      --bg-color: #ffffff;
+      --text-color: #0f172a;
+      --accent: #0ea5e9;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: #0f172a;
-      color: #f8fafc;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 2rem;
+      transition: background 0.3s ease, color 0.3s ease;
       text-align: center;
     }
-    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    p { font-size: 1.2rem; margin-top: 0; }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 0;
+    }
+
     .links a {
-      color: #38bdf8;
+      color: var(--accent);
       text-decoration: none;
       margin: 0 10px;
+      font-weight: bold;
     }
+
     .links a:hover {
       text-decoration: underline;
+    }
+
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 6px 14px;
+      border: none;
+      background-color: var(--accent);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .badge {
+      margin-top: 2rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
+
+  <button id="theme-toggle">Light Mode</button>
+
   <h1>👋 Hi, I’m Dibyajyoti Behera</h1>
   <p>A passionate Web Developer & BCA student 🚀</p>
+
   <div class="links">
-    <a href="https://github.com/dibyajyoti-codes" target="_blank">GitHub</a>
-    <a href="www.linkedin.com/in/dibyajyoti-behera-503854283" target="_blank">LinkedIn</a>
-    <a href="behera.dibyajyoti668@gmail.com">Email</a>
+    <a href="https://github.com/dibyajyoti" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/dibyajyoti" target="_blank">LinkedIn</a>
+    <a href="mailto:your.email@example.com">Email</a>
   </div>
+
+  <div class="badge">
+    <img src="https://img.shields.io/badge/Built%20with-HTML%20%7C%20CSS%20%7C%20JS-0f172a?style=for-the-badge&logo=html5&logoColor=white&labelColor=000000&color=38bdf8" alt="Built with HTML/CSS/JS">
+  </div>
+
+  <footer>
+    © 2025 by Dibyajyoti Behera
+  </footer>
+
+  <script>
+    const toggle = document.getElementById("theme-toggle");
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-theme");
+      toggle.textContent = document.body.classList.contains("light-theme")
+        ? "Dark Mode"
+        : "Light Mode";
+    });
+  </script>
 </body>
 </html>
