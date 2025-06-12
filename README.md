@@ -30,7 +30,6 @@ This portfolio is built with ❤️ using **HTML, CSS, and JavaScript** and show
 
 - 🔄 Light/Dark Mode toggle  
 - 📱 Responsive design  
-- 🎖️ Custom badge: `Built with ❤️ by Dibyajyoti Behera`  
 - 📇 GitHub, LinkedIn, and Email links
 
 
