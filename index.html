@@ -4,7 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dibyajyoti Behera | Portfolio</title>
+  <link rel="icon" href="https://fav.farm/🔥" type="image/x-icon">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     :root {
       --bg-color: #f3f4f6;
       --text-color: #1f2937;
@@ -17,77 +21,54 @@
       --accent-color: #6366f1;
       --button-hover: #4338ca;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
+      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg-color);
+      background-color: var(--bg-color);
       color: var(--text-color);
-      scroll-behavior: smooth;
+      transition: background-color 0.3s, color 0.3s;
     }
     nav {
       background: var(--accent-color);
       color: white;
-      padding: 1rem 2rem;
+      padding: 1rem 1.5rem;
+    }
+    .nav-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
     }
-    nav h1 {
-      font-size: 1.5rem;
+    .hamburger {
+      margin-left: auto;
+      font-size: 1.8rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+      display: none;
     }
     .nav-links {
       display: flex;
       gap: 1rem;
+      margin-top: 0.75rem;
     }
-    .nav-links a {
-      color: white;
+    .nav-links a, .nav-links button {
+      color: #fff;
       text-decoration: none;
       font-weight: bold;
-    }
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
-    #theme-toggle {
       background: none;
       border: none;
-      color: white;
-      font-size: 1.2rem;
       cursor: pointer;
     }
-    .hamburger {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: white;
-      background: none;
-      border: none;
+    .nav-links button {
+      font-size: 1rem;
     }
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-      }
-      .nav-links.show {
-        display: flex;
-      }
-      .hamburger {
-        display: block;
-      }
-    }
-
     .intro {
       text-align: center;
-      padding: 4rem 1rem;
+      padding: 3rem 1rem;
       background: linear-gradient(135deg, var(--accent-color), var(--button-hover));
       color: white;
     }
-
     section {
       padding: 2rem 1rem;
       max-width: 900px;
@@ -97,7 +78,6 @@
       border-bottom: 3px solid var(--accent-color);
       display: inline-block;
       padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
     }
     .skills-grid {
       display: grid;
@@ -149,26 +129,69 @@
       background-color: var(--button-hover);
       transform: translateY(-2px);
     }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+    }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.getElementById("theme-toggle");
+      const currentTheme = localStorage.getItem("theme") || "light";
+      document.documentElement.setAttribute("data-theme", currentTheme);
+      toggle.textContent = currentTheme === "dark" ? "☀️" : "🌙";
+
+      toggle.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        toggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
+      });
+
+      const scrollTopBtn = document.getElementById("scrollTopBtn");
+      window.addEventListener("scroll", () => {
+        scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+      });
+      scrollTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      document.getElementById("hamburger").addEventListener("click", function() {
+        document.getElementById("nav-links").classList.toggle("show");
+      });
+    });
+  </script>
 </head>
 <body>
-  <nav>
-    <h1>Dibyajyoti Behera</h1>
-    <button class="hamburger" id="hamburger">&#9776;</button>
-    <div class="nav-links" id="nav-links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#uiux">UI/UX</a>
-      <a href="#contact">Contact</a>
-      <button id="theme-toggle">🌙</button>
+  <header class="hero">
+    <nav>
+      <div class="nav-header">
+        <h1>Dibyajyoti Behera</h1>
+        <button class="hamburger" id="hamburger">&#9776;</button>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#uiux">UI/UX</a>
+        <a href="#contact">Contact</a>
+        <button id="theme-toggle">🌙</button>
+      </div>
+    </nav>
+    <div class="intro" id="home">
+      <h2>Hi, I'm Dibyajyoti 👋</h2>
+      <p>Aspiring Web Developer </p>
     </div>
-  </nav>
-
-  <div class="intro" id="home">
-    <h2>Hi, I'm Dibyajyoti 👋</h2>
-    <p>Aspiring Web Developer</p>
-  </div>
+  </header>
 
   <section id="about">
     <h2>About Me</h2>
@@ -221,51 +244,6 @@
   <footer>
     <p>Built with ❤️ by Dibyajyoti Behera using HTML/CSS/JS</p>
   </footer>
-
   <button id="scrollTopBtn" title="Go to top">Top ↑</button>
-
-  <script>
-    const themeToggle = document.getElementById("theme-toggle");
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("nav-links");
-
-    // Theme toggle
-    document.addEventListener("DOMContentLoaded", function () {
-      const currentTheme = localStorage.getItem("theme") || "light";
-      document.documentElement.setAttribute("data-theme", currentTheme);
-      themeToggle.textContent = currentTheme === "dark" ? "☀️" : "🌙";
-    });
-
-    themeToggle.addEventListener("click", () => {
-      const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      themeToggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
-    });
-
-    // Scroll button
-    window.addEventListener("scroll", () => {
-      scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    });
-
-    scrollTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // Hamburger menu
-    hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
-    });
-
-    // Auto close on click (optional)
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
-          navLinks.classList.remove("show");
-        }
-      });
-    });
-  </script>
 </body>
 </html>
